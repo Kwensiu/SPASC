@@ -1,6 +1,8 @@
 package com.spasc.module;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 public final class MainActivity extends Activity {
     private static final String TAG = "SPCAD";
+    private static final String SOURCE_CODE_URL = "https://github.com/Kwensiu/SPASC";
 
     private EditText separatorInput;
     private EditText excludedArtistsInput;
@@ -86,12 +89,20 @@ public final class MainActivity extends Activity {
         actions.setOrientation(LinearLayout.HORIZONTAL);
         actions.setPadding(0, dp(12), 0, 0);
 
+        Button sourceCode = new Button(this);
+        sourceCode.setText(getString(R.string.source_code));
+        sourceCode.setOnClickListener(view -> openSourceCode());
+        actions.addView(sourceCode, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+
         Button save = new Button(this);
         save.setText(getString(R.string.separator_save));
         save.setOnClickListener(view -> saveSeparators());
         LinearLayout.LayoutParams saveParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
+        saveParams.setMargins(dp(8), 0, 0, 0);
         actions.addView(save, saveParams);
 
         root.addView(actions, new LinearLayout.LayoutParams(
@@ -132,6 +143,10 @@ public final class MainActivity extends Activity {
                 this,
                 saved ? R.string.separator_saved : R.string.separator_save_failed,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    private void openSourceCode() {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(SOURCE_CODE_URL)));
     }
 
     private boolean saveSettings() {

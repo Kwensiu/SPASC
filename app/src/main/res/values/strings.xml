@@ -7,6 +7,7 @@
     <string name="separator_saved">已保存，请重启椒盐音乐后重新扫描音乐库。</string>
     <string name="separator_save_failed">保存失败</string>
     <string name="separator_save">保存并应用</string>
+    <string name="source_code">查看源代码</string>
     <string name="separator_summary">每行填一个，留空则不分隔</string>
     <string name="separator_hint">例如：/</string>
     <string name="excluded_artists_label">分隔黑名单</string>
