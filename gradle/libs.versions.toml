@@ -1,0 +1,11 @@
+[versions]
+agp = "9.2.1"
+xposed-legacy-api = "82"
+junit4 = "4.13.2"
+
+[plugins]
+agp-app = { id = "com.android.application", version.ref = "agp" }
+
+[libraries]
+legacy-xposed-api = { module = "de.robv.android.xposed:api", version.ref = "xposed-legacy-api" }
+junit4 = { group = "junit", name = "junit", version.ref = "junit4" }

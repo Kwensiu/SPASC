@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SPASC</string>
+    <string name="module_description">椒盐音乐艺术家分隔符自定义</string>
+    <string name="status_enabled">给椒盐音乐用的自定义艺术家分隔设置</string>
+    <string name="separator_label">艺术家分隔符</string>
+    <string name="separator_saved">已保存，请重启椒盐音乐后重新扫描音乐库。</string>
+    <string name="separator_save_failed">保存失败</string>
+    <string name="separator_save">保存并应用</string>
+    <string name="separator_summary">每行填一个，留空则不分隔</string>
+    <string name="separator_hint">例如：/</string>
+    <string name="excluded_artists_label">分隔黑名单</string>
+    <string name="excluded_artists_summary">部分艺术家名含有分隔字符，填入黑名单将不被拆分，每行填一个。</string>
+    <string name="excluded_artists_hint">例如：Leo/need</string>
+    <string name="cache_notice">保存后将会尝试清空椒盐音乐已缓存的艺术家数据库，需要重启椒盐音乐并刷新音乐库后生效，不会修改和丢失歌曲信息</string>
+</resources>
