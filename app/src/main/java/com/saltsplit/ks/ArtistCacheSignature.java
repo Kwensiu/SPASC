@@ -1,4 +1,4 @@
-package com.spasc.module;
+package com.saltsplit.ks;
 
 final class ArtistCacheSignature {
     static final String RULE_CACHE_VERSION = "artist-dao-normalize-v4";

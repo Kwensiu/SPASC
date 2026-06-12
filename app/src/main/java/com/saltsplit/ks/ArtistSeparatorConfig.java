@@ -1,4 +1,4 @@
-package com.spasc.module;
+package com.saltsplit.ks;
 
 import java.util.List;
 

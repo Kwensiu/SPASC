@@ -1,4 +1,4 @@
-package com.spasc.module;
+package com.saltsplit.ks;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,7 +14,7 @@ final class SeparatorPreferences {
     private static final String KEY_SEPARATORS = "separators";
     private static final String KEY_EXCLUDED_ARTISTS = "excluded_artists";
     static final String KEY_APPLY_REQUEST_VERSION = "apply_request_version";
-    private static final String MODULE_PACKAGE = "com.spasc.module";
+    private static final String MODULE_PACKAGE = "com.saltsplit.ks";
     static final String CONFIG_AUTHORITY = MODULE_PACKAGE + ".config";
     static final Uri CONFIG_URI = Uri.parse("content://" + CONFIG_AUTHORITY + "/artist_separator");
 

@@ -1,4 +1,4 @@
-package com.spasc.module;
+package com.saltsplit.ks;
 
 import static org.junit.Assert.assertEquals;
 

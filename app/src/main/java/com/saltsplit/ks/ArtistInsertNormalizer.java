@@ -1,4 +1,4 @@
-package com.spasc.module;
+package com.saltsplit.ks;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -53,13 +53,13 @@ final class ArtistInsertNormalizer {
             for (ArtistRow row : rows.values()) {
                 normalized.add(row.toArtist(reflection));
             }
-            XposedBridge.log("SPCAD normalized Artist insert list: before="
+            XposedBridge.log("SaltSplit normalized Artist insert list: before="
                     + source.size()
                     + ", after="
                     + normalized.size());
             return normalized;
         } catch (Throwable throwable) {
-            XposedBridge.log("SPCAD failed to normalize Artist insert list");
+            XposedBridge.log("SaltSplit failed to normalize Artist insert list");
             XposedBridge.log(throwable);
             return value;
         }

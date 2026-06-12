@@ -15,6 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SPCAD"
+rootProject.name = "SaltSplit"
 
 include(":app")

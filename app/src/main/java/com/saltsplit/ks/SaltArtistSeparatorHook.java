@@ -1,4 +1,4 @@
-package com.spasc.module;
+package com.saltsplit.ks;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,7 +28,7 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
     };
     private static final String ARTIST_DAO_IMPL_CLASS = "com.salt.music.data.dao.ArtistDao_Impl";
     private static final String ARTIST_ENTRY_CLASS = "com.salt.music.data.entry.Artist";
-    private static final String SALT_PREFS_NAME = "spcad_artist_separator";
+    private static final String SALT_PREFS_NAME = "saltsplit_artist_separator";
     private static final String KEY_APPLIED_SIGNATURE = "applied_signature";
     private static final AtomicBoolean INSTALLED = new AtomicBoolean(false);
     private static volatile Context applicationContext;
@@ -57,7 +57,7 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
         if (tryInstallDiscoveredArtistSplitHook(classLoader, apkPath)) {
             return;
         }
-        XposedBridge.log("SPCAD did not find a known Salt Player artist split hook target");
+        XposedBridge.log("SaltSplit did not find a known Salt Player artist split hook target");
     }
 
     private static boolean tryInstallArtistSplitHook(
@@ -80,15 +80,15 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
                     param.setResult(artists);
                 }
             });
-            XposedBridge.log("SPCAD installed Salt Player artist separator hook: "
+            XposedBridge.log("SaltSplit installed Salt Player artist separator hook: "
                     + targetClass.getName() + "#" + method.getName());
             return true;
         } catch (ClassNotFoundException | NoSuchMethodException expected) {
             if (logUnavailable) {
-                XposedBridge.log("SPCAD Salt Player artist split target unavailable: " + className);
+                XposedBridge.log("SaltSplit Salt Player artist split target unavailable: " + className);
             }
         } catch (Throwable throwable) {
-            XposedBridge.log("SPCAD failed to install Salt Player artist split hook: " + className);
+            XposedBridge.log("SaltSplit failed to install Salt Player artist split hook: " + className);
             XposedBridge.log(throwable);
         }
         return false;
@@ -106,13 +106,13 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
                 String className = entries.nextElement();
                 if (isArtistSplitClassCandidate(className)
                         && tryInstallArtistSplitHook(classLoader, className, false)) {
-                    XposedBridge.log("SPCAD discovered Salt Player artist split hook target: "
+                    XposedBridge.log("SaltSplit discovered Salt Player artist split hook target: "
                             + className);
                     return true;
                 }
             }
         } catch (Throwable throwable) {
-            XposedBridge.log("SPCAD failed to discover Salt Player artist split hook target");
+            XposedBridge.log("SaltSplit failed to discover Salt Player artist split hook target");
             XposedBridge.log(throwable);
         } finally {
             if (dexFile != null) {
@@ -141,10 +141,10 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
                             ARTIST_ENTRY_CLASS);
                 }
             });
-            XposedBridge.log("SPCAD installed Salt Player Artist DAO hook: "
+            XposedBridge.log("SaltSplit installed Salt Player Artist DAO hook: "
                     + daoClass.getName() + "#" + method.getName());
         } catch (Throwable throwable) {
-            XposedBridge.log("SPCAD failed to install Salt Player Artist DAO hook");
+            XposedBridge.log("SaltSplit failed to install Salt Player Artist DAO hook");
             XposedBridge.log(throwable);
         }
     }
@@ -161,7 +161,7 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
                 }
             });
         } catch (Throwable throwable) {
-            XposedBridge.log("SPCAD failed to install Salt Player artist cache invalidation hook");
+            XposedBridge.log("SaltSplit failed to install Salt Player artist cache invalidation hook");
             XposedBridge.log(throwable);
         }
     }
@@ -169,7 +169,7 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
     private static void invalidateArtistCacheIfConfigChanged(Context context) {
         try {
             ArtistSeparatorConfig config = SeparatorPreferences.loadForXposed(context);
-            XposedBridge.log("SPCAD loaded separator config: separators="
+            XposedBridge.log("SaltSplit loaded separator config: separators="
                     + config.separators.size()
                     + ", excludedArtists="
                     + config.excludedArtists.size()
@@ -187,9 +187,9 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
                     .edit()
                     .putString(KEY_APPLIED_SIGNATURE, config.signature)
                     .apply();
-            XposedBridge.log("SPCAD cleared Salt Player Artist table after separator config change");
+            XposedBridge.log("SaltSplit cleared Salt Player Artist table after separator config change");
         } catch (Throwable throwable) {
-            XposedBridge.log("SPCAD failed to invalidate Salt Player Artist table");
+            XposedBridge.log("SaltSplit failed to invalidate Salt Player Artist table");
             XposedBridge.log(throwable);
         }
     }
@@ -235,15 +235,15 @@ public final class SaltArtistSeparatorHook implements IXposedHookLoadPackage {
     private static boolean isSlashArtistSplitMethod(Method method) {
         try {
             method.setAccessible(true);
-            Object split = method.invoke(null, "SPCAD_LEFT/SPCAD_RIGHT");
-            Object single = method.invoke(null, "SPCAD_SINGLE");
+            Object split = method.invoke(null, "SaltSplit_LEFT/SaltSplit_RIGHT");
+            Object single = method.invoke(null, "SaltSplit_SINGLE");
             return split instanceof List<?>
                     && single instanceof List<?>
                     && ((List<?>) split).size() == 2
-                    && "SPCAD_LEFT".equals(((List<?>) split).get(0))
-                    && "SPCAD_RIGHT".equals(((List<?>) split).get(1))
+                    && "SaltSplit_LEFT".equals(((List<?>) split).get(0))
+                    && "SaltSplit_RIGHT".equals(((List<?>) split).get(1))
                     && ((List<?>) single).size() == 1
-                    && "SPCAD_SINGLE".equals(((List<?>) single).get(0));
+                    && "SaltSplit_SINGLE".equals(((List<?>) single).get(0));
         } catch (Throwable ignored) {
             return false;
         }

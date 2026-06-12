@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">椒盐艺术家分隔</string>
+    <string name="module_description">椒盐艺术家分隔</string>
+    <string name="check_updates">检查更新</string>
+    <string name="checking_updates">正在检查更新...</string>
+    <string name="latest_version">当前已是最新版本。</string>
+    <string name="update_found">发现新版本：%1$s</string>
+    <string name="update_failed">检查更新失败</string>
+    <string name="update_download">前往下载</string>
+    <string name="update_release_notes">查看发布页</string>
+    <string name="open_url_failed">没有可打开此链接的应用。</string>
+</resources>

@@ -1,4 +1,4 @@
-package com.spasc.module;
+package com.saltsplit.ks;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -36,7 +36,7 @@ public final class ArtistSeparatorConfigProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        return "vnd.android.cursor.item/vnd.com.spasc.module.artist_separator";
+        return "vnd.android.cursor.item/vnd.com.saltsplit.ks.artist_separator";
     }
 
     @Override
