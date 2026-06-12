@@ -55,11 +55,30 @@ public final class MainActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        LinearLayout titleRow = new LinearLayout(this);
+        titleRow.setOrientation(LinearLayout.HORIZONTAL);
+        titleRow.setGravity(Gravity.CENTER_VERTICAL);
+
         TextView title = new TextView(this);
         title.setText(getString(R.string.app_name));
         title.setTextSize(24);
         title.setGravity(Gravity.START);
-        root.addView(title, new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
+                0,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                1f);
+        titleRow.addView(title, titleParams);
+
+        TextView version = new TextView(this);
+        version.setText(getString(R.string.version_label, BuildConfig.VERSION_NAME));
+        version.setTextSize(14);
+        version.setGravity(Gravity.END);
+        version.setPadding(dp(12), 0, 0, 0);
+        titleRow.addView(version, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        root.addView(titleRow, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -125,14 +144,21 @@ public final class MainActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        LinearLayout updateActions = new LinearLayout(this);
+        updateActions.setGravity(Gravity.END);
+        updateActions.setOrientation(LinearLayout.HORIZONTAL);
+        updateActions.setPadding(0, dp(12), 0, 0);
+
         Button checkUpdates = new Button(this);
         checkUpdates.setText(getString(R.string.check_updates));
         checkUpdates.setOnClickListener(view -> checkForUpdates());
-        LinearLayout.LayoutParams updateParams = new LinearLayout.LayoutParams(
+        updateActions.addView(checkUpdates, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        root.addView(updateActions, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        updateParams.setMargins(0, dp(12), 0, 0);
-        root.addView(checkUpdates, updateParams);
+                ViewGroup.LayoutParams.WRAP_CONTENT));
 
         setContentView(scrollView);
         inputsReady = true;
