@@ -26,6 +26,9 @@ jobs:
           java-version: 17
           cache: gradle
 
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
       - name: Derive release version
         id: version
         shell: bash
